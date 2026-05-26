@@ -104,7 +104,13 @@ import java.util.stream.Collectors;
 
         static List<String> soldProductNames(List<Order> orders) {
             // TODO: task 4
-            return List.of();
+            return orders.stream()
+                    .filter(order -> order.status()!=OrderStatus.CANCELLED)
+            .flatMap(order -> order.items().stream())
+                    .map(item -> item.product().name())
+                    .distinct()
+                    .sorted()
+                    .toList();
         }
 
         static double totalRevenue(List<Order> orders) {
