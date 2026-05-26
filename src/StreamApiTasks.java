@@ -95,7 +95,11 @@ import java.util.stream.Collectors;
 
         static List<String> uniqueCustomerNames(List<Order> orders) {
             // TODO: task 3
-            return List.of();
+            return orders.stream()
+                    .map(Order::customerName)
+                    .distinct()
+                    .sorted()
+                    .toList();
         }
 
         static List<String> soldProductNames(List<Order> orders) {
