@@ -79,7 +79,10 @@ import java.util.stream.Collectors;
 
         static List<String> activeOrderIds(List<Order> orders) {
             // TODO: task 1
-            return List.of();
+            return orders.stream()
+            .filter(order -> order.status() != OrderStatus.CANCELLED)
+                    .map(order -> order.id())
+                    .toList();
         }
 
         static List<Order> ordersAbove(List<Order> orders, double minValue) {
